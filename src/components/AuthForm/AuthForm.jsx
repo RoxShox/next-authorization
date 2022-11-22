@@ -19,7 +19,7 @@ const AuthForm = ({ type }) => {
 
     function checkConfPass() {
         const newState = {...state}    
-        newState.checkConfPass = state.pass === state.confPass && state.pass.length >= 6
+        newState.checkConfPass = state.pass === state.confPass && state.pass.length >= 5
         if(!newState.checkConfPass) newState.checkSubmit = false
         setState(newState)
     }
@@ -64,11 +64,17 @@ const AuthForm = ({ type }) => {
                 ) : (
                     <>
                         <h1 className={styles.form__title}>Register</h1>
-                            
                         <input required type="text"  placeholder='Введите полное имя' name='name' className={styles.form__input} onChange={handleChange}/>
                         <input required type="email"  placeholder='Введите email' name='email' className={styles.form__input} onChange={handleChange}/>
-                        <input minLength='6' required type="password"  placeholder='Введите пароль' name='pass' className={styles.form__input} onChange={handleChange}/>
-                        <input required type="password"  placeholder='Подтвердите пароль' name='confPass' className={`${styles.form__input} ${ !state.checkConfPass ? styles.danger : ''}`} onChange={handleChange}/>
+                        <div className={styles.passContainer}>
+                            <input minLength='5' required type="password" placeholder='Введите пароль' name='pass' className={styles.form__input} onChange={handleChange} />
+                            <span className={`${styles.form__helps} ${styles.form__helps_pass} ${state.pass ? '' : styles.active}`}>пароль не менее 5 символов</span>    
+                        </div>
+                        <div className={`${styles.passContainer} ${!state.checkConfPass ? styles.danger : ''}`}>
+                            <input required type="password" disabled={state.pass.length < 5 ? true : false} placeholder='Подтвердите пароль' name='confPass' className={styles.form__input} onChange={handleChange} />
+                            <span className={`${styles.form__helps} ${styles.form__helps_confPass}`}>Пароли не совпадают</span>    
+                        </div>
+                            
                         <div className={styles.btnContainer}>
                             <input type="submit" value='Отправить' className={`${styles.form__input} ${styles.form__input_submit} ${state.checkSubmit ? styles.active : ''}`} />
                             <Link href='/login' className={styles.form__helps}>Уже есть аккаунт?</Link>          
