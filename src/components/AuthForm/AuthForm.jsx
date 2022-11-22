@@ -13,7 +13,7 @@ const AuthForm = ({ type }) => {
 
     useEffect(() => {
         checkSubmit()
-    }, [state.checkConfPass, state.email, state.name])
+    }, [state.checkConfPass, state.email, state.name, state.pass])
 
    
 
@@ -58,11 +58,11 @@ const AuthForm = ({ type }) => {
                         <h1 className={styles.form__title}>Login</h1>
                         <input required type="email" placeholder='Введите email' name='email' className={styles.form__input} onChange={handleChange} />
                         <div className={styles.passContainer}>
-                            <input required type="password"  placeholder='Введите пароль' name='password' className={styles.form__input} onChange={handleChange}/>
+                            <input required type="password"  placeholder='Введите пароль' name='pass' className={styles.form__input} onChange={handleChange}/>
                             <span className={styles.form__helps} onClick={() => alert('Aхахах, сожалеем :(')}>Забыли пароль?</span>
                         </div>
                         <div className={styles.btnContainer}>
-                            <input type="submit" value='Отправить' className={`${styles.form__input} ${styles.form__input_submit}`} />
+                            <input type="submit" value='Отправить' className={`${styles.form__input} ${styles.form__input_submit} ${state.checkSubmit ? styles.active : ''}`} />
                         </div>
                         <Link href='/register' className={`${styles.form__helps } ${styles.form__helps_link}`}>Хотите создатть аккаунт?</Link>          
                     </>
@@ -81,7 +81,7 @@ const AuthForm = ({ type }) => {
                         </div>
                             
                         <div className={styles.btnContainer}>
-                            <input type="submit" value='Отправить' className={`${styles.form__input} ${styles.form__input_submit} ${state.checkSubmit ? styles.active : ''}`} />
+                            <input type="submit" value='Отправить' className={`${styles.form__input} ${styles.form__input_submit} ${state.checkSubmit ? styles.active : ''} `} />
                             <Link href='/login' className={styles.form__helps}>Уже есть аккаунт?</Link>          
                         </div>
                     </>
