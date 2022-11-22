@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next'
+import i18n from '../../helpers/i18next'
 import Link from 'next/link';
 import styles from './AuthForm.module.scss'
 
 const AuthForm = ({ type }) => {
     const initState = { name: '', email: '', pass: '', confPass: '', checkConfPass: true, checkSubmit: false}
     const [state, setState] = useState(initState)
-    const checkSubmitDepends = type === 'login' ? [state.pass, state.email]: [state.checkConfPass, state.email, state.name]
+    const checkSubmitDepends = type === 'login' ? [state.pass, state.email] : [state.checkConfPass, state.email, state.name]
+    const { t, i18n } = useTranslation()
+
     useEffect(() => {
         if(type === 'login') return
         if((state.email.length === 0 && state.pass.length === 0)) return
@@ -15,7 +19,6 @@ const AuthForm = ({ type }) => {
     useEffect(() => {
         checkSubmit()
     }, checkSubmitDepends)
-    useEffect(() => console.log(state), [state, setState])
    
 
     function checkConfPass() {
@@ -50,12 +53,13 @@ const AuthForm = ({ type }) => {
     
     function formSubmit(e) {
         e.preventDefault()
-        if(!state.checkSubmit && type !== 'login') return
-        alert("в процессе")
+        if (!state.checkSubmit && type !== 'login') return
+        i18n.changeLanguage('en')
     }
     
     return (
         <div className={styles.formContainer}>
+            {t('text')}
             <form id="auth" className={styles.form} onSubmit={formSubmit}>
                 {type === 'login' ? (
                     <>
