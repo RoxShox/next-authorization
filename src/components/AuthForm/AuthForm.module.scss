@@ -1,6 +1,5 @@
 .formContainer{
     display: block;
-    background: #222;
     width: 100%;
     max-width: 600px;
 
@@ -14,12 +13,20 @@
             margin: 0;
         }
         &__input{
-            padding: 5px;
+            border: 3.5px solid black;
+            border-radius: 16px;
+            padding: 5px 10px;
             box-sizing: content-box;
             height: 36px;
             width: 80%;
-            font-size: 24px;
-
-        }
+            font-size: 22px;
+            &_submit{
+                color: #fff;
+                background: #4361ee;
+                &:active{
+                    transform: scale(.98);
+                }
+            }
+        }   
     }
 }
