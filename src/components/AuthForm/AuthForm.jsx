@@ -3,30 +3,33 @@ import Link from 'next/link';
 import styles from './AuthForm.module.scss'
 
 const AuthForm = ({ type }) => {
-    const initState = { name: '', email: '', pass: '', confPass: '', checkConfPass: 'true', checkSubmit: false}
+    const initState = { name: '', email: '', pass: '', confPass: '', checkConfPass: true, checkSubmit: false}
     const [state, setState] = useState(initState)
-
+    const checkSubmitDepends = type === 'login' ? [state.pass, state.email]: [state.checkConfPass, state.email, state.name]
     useEffect(() => {
-        if((state.email.length === 0 && state.pass.length === 0) || type === 'login') return
+        if(type === 'login') return
+        if((state.email.length === 0 && state.pass.length === 0)) return
         checkConfPass()
     }, [state.pass, state.confPass])    
 
     useEffect(() => {
         checkSubmit()
-    }, [state.checkConfPass, state.email, state.name, state.pass])
-
+    }, checkSubmitDepends)
+    useEffect(() => console.log(state), [state, setState])
    
 
     function checkConfPass() {
-        const newState = {...state}    
+        const newState = { ...state }
         newState.checkConfPass = state.pass === state.confPass && state.pass.length >= 5
         if(!newState.checkConfPass) newState.checkSubmit = false
         setState(newState)
     }
+
     function checkSubmit() {
         const newState = { ...state }
         if (type === 'login') {
-            if (!state.email || !state.pass) return
+            newState.checkSubmit = false
+            if (!state.email || !state.pass) return setState(newState)
             newState.checkSubmit = true
             return setState(newState)
         }
@@ -37,6 +40,7 @@ const AuthForm = ({ type }) => {
         newState.checkSubmit = true
         setState(newState)
     }
+
     function handleChange(e) {
         const newState = { ...state }
         const target = e.target
