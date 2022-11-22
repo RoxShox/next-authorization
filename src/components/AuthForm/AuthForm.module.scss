@@ -12,21 +12,65 @@
         &__title{
             margin: 0;
         }
+        .btnContainer, .passContainer{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 80%;
+
+            .form__input{
+                width: 100%;
+            }
+
+        }
         &__input{
-            border: 3.5px solid black;
+            border: 1px solid #4361ee;
             border-radius: 16px;
             padding: 5px 10px;
             box-sizing: content-box;
             height: 36px;
             width: 80%;
             font-size: 22px;
+            transition: .1s;
+            &:focus{
+                outline: 3px solid #4361ee;
+                transition: .1s;
+            }
+
+            &.danger{
+                // border: 
+                outline: 4px solid red;
+            }
             &_submit{
-                color: #fff;
-                background: #4361ee;
+                background: #fff;
+                color: #4361ee;
+                font-weight: 600;
+
+                &.active{
+                    color: #fff;
+                    background: #4361ee;
+                }
                 &:active{
                     transform: scale(.98);
                 }
+                
             }
         }   
+        &__helps{
+            color: #4361ee;
+            font-size: 1.2em;
+            cursor: pointer;
+            align-self: flex-end;
+            // margin-right: 20%;
+            &:hover{
+                text-decoration: underline ;
+            }
+            &_link {
+                font-size: 1.4em;
+                align-self: center;
+                margin-right: none;
+            }
+        }
     }
 }
