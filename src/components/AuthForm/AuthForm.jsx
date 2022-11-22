@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import styles from './AuthForm.module.scss'
 
@@ -7,7 +7,7 @@ const AuthForm = ({ type }) => {
     const [state, setState] = useState(initState)
 
     useEffect(() => {
-        if(state.email.length === 0 && state.pass.length === 0) return
+        if((state.email.length === 0 && state.pass.length === 0) || type === 'login') return
         checkConfPass()
     }, [state.pass, state.confPass])    
 
@@ -25,6 +25,11 @@ const AuthForm = ({ type }) => {
     }
     function checkSubmit() {
         const newState = { ...state }
+        if (type === 'login') {
+            if (!state.email || !state.pass) return
+            newState.checkSubmit = true
+            return setState(newState)
+        }
         if (!state.email || !(state.checkConfPass && state.pass) || !state.name) {
             newState.checkSubmit = false
             return setState(newState)
@@ -41,7 +46,7 @@ const AuthForm = ({ type }) => {
     
     function formSubmit(e) {
         e.preventDefault()
-        if(!state.checkSubmit) return
+        if(!state.checkSubmit && type !== 'login') return
         alert("в процессе")
     }
     
