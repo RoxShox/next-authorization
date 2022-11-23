@@ -2,7 +2,8 @@
     "header" : {
         "toggleLang": "Ändern Sie die Sprache",
         "signIn": "Einloggen",
-        "signUp": "Konto erstellen"
+        "signUp": "Account erstellen",
+        "logOut": "Sich vom account abmelden"
     },
     "form": {
         "login": "Einloggen",

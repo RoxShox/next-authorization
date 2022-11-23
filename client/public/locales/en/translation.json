@@ -2,7 +2,8 @@
     "header" : {
         "toggleLang": "Toggle lang",
         "signIn": "Sign in",
-        "signUp": "Sign up"
+        "signUp": "Sign up",
+        "logOut": "Log out"
     },
     "form": {
         "login": "Login",

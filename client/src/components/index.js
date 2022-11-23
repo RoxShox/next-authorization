@@ -1,2 +1,3 @@
 import AuthForm from "./AuthForm/AuthForm";
-export {AuthForm}
+import LangMenu from "./LangMenu/LangMenu";
+export {AuthForm, LangMenu}
