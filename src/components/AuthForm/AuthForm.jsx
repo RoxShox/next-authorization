@@ -59,40 +59,39 @@ const AuthForm = ({ type }) => {
     
     return (
         <div className={styles.formContainer}>
-            {t('text')}
             <form id="auth" className={styles.form} onSubmit={formSubmit}>
                 {type === 'login' ? (
                     <>
-                        <h1 className={styles.form__title}>Login</h1>
-                        <input required type="email" placeholder='Введите email' name='email' className={styles.form__input} onChange={handleChange} />
+                        <h1 className={styles.form__title}>{t("form.login")}</h1>
+                        <input required type="email" placeholder={t("form.inputs.email")} name='email' className={styles.form__input} onChange={handleChange} />
                         <div className={styles.passContainer}>
-                            <input required type="password"  placeholder='Введите пароль' name='pass' className={styles.form__input} onChange={handleChange}/>
-                            <span className={styles.form__helps} onClick={() => alert('Aхахах, сожалеем :(')}>Забыли пароль?</span>
+                            <input required type="password"  placeholder={t("form.inputs.pass")} name='pass' className={styles.form__input} onChange={handleChange}/>
+                            <span className={styles.form__helps} onClick={() => alert('Aхахах, сожалеем :(')}>{t("form.inputs.forgotPass")}</span>
                         </div>
                         <div className={styles.btnContainer}>
-                            <input type="submit" value='Отправить' className={`${styles.form__input} ${styles.form__input_submit} ${state.checkSubmit ? styles.active : ''}`} />
+                            <input type="submit" value={t("form.inputs.submit")} className={`${styles.form__input} ${styles.form__input_submit} ${state.checkSubmit ? styles.active : ''}`} />
                         </div>
-                        <Link href='/register' className={`${styles.form__helps } ${styles.form__helps_link}`}>Хотите создатть аккаунт?</Link>          
+                        <Link href='/register' className={`${styles.form__helps } ${styles.form__helps_link}`}>{t("form.inputs.dontHaveAccount")}</Link>          
                     </>
                 ) : (
-                    <>
-                        <h1 className={styles.form__title}>Register</h1>
-                        <input required type="text"  placeholder='Введите полное имя' name='name' className={styles.form__input} onChange={handleChange}/>
-                        <input required type="email"  placeholder='Введите email' name='email' className={styles.form__input} onChange={handleChange}/>
-                        <div className={styles.passContainer}>
-                            <input minLength='5' required type="password" placeholder='Введите пароль' name='pass' className={styles.form__input} onChange={handleChange} />
-                            <span className={`${styles.form__helps} ${styles.form__helps_pass} ${state.pass ? '' : styles.active}`}>пароль не менее 5 символов</span>    
-                        </div>
-                        <div className={`${styles.passContainer} ${!state.checkConfPass ? styles.danger : ''}`}>
-                            <input required type="password" disabled={state.pass.length < 5 ? true : false} placeholder='Подтвердите пароль' name='confPass' className={styles.form__input} onChange={handleChange} />
-                            <span className={`${styles.form__helps} ${styles.form__helps_confPass}`}>Пароли не совпадают</span>    
-                        </div>
-                            
-                        <div className={styles.btnContainer}>
-                            <input type="submit" value='Отправить' className={`${styles.form__input} ${styles.form__input_submit} ${state.checkSubmit ? styles.active : ''} `} />
-                            <Link href='/login' className={styles.form__helps}>Уже есть аккаунт?</Link>          
-                        </div>
-                    </>
+                        <>
+                            <h1 className={styles.form__title}>{t("form.register")}</h1>
+                            <input required type="text"  placeholder={t("form.inputs.name")} name='name' className={styles.form__input} onChange={handleChange}/>
+                            <input required type="email"  placeholder={t("form.inputs.email")} name='email' className={styles.form__input} onChange={handleChange}/>
+                            <div className={styles.passContainer}>
+                                <input minLength='5' required type="password" placeholder={t("form.inputs.pass")} name='pass' className={styles.form__input} onChange={handleChange} />
+                                <span className={`${styles.form__helps} ${styles.form__helps_pass} ${state.pass ? '' : styles.active}`}>{t("form.inputs.passHelper")}</span>    
+                            </div>
+                            <div className={`${styles.passContainer} ${!state.checkConfPass ? styles.danger : ''}`}>
+                                <input required type="password" disabled={state.pass.length < 5 ? true : false} placeholder={t("form.inputs.confPass")} name='confPass' className={styles.form__input} onChange={handleChange} />
+                                <span className={`${styles.form__helps} ${styles.form__helps_confPass}`}>{t("form.inputs.confPassHelper")}</span>    
+                            </div>
+                                
+                            <div className={styles.btnContainer}>
+                                <input type="submit" value={t("form.inputs.submit")} className={`${styles.form__input} ${styles.form__input_submit} ${state.checkSubmit ? styles.active : ''} `} />
+                                <Link href='/login' className={styles.form__helps}>{t("form.inputs.haveAccount")}</Link>          
+                            </div>
+                        </>
                 )}
             </form>
         </div>
