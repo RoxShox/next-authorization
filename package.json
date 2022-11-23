@@ -7,7 +7,7 @@
 	"scripts": {
 		"start": "node index.js",
 		"start:dev": "nodemon index.js",
-		"server": "npx nodemon ./src/index.js",
+		"server": "npx nodemon ./src_server/index.js",
 		"client": "npm run dev --prefix client",
 		"dev": "concurrently \"npm run server\" \"npm run client\""
 	},

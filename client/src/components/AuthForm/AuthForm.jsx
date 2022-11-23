@@ -92,7 +92,7 @@ const AuthForm = ({ type }) => {
                         <div className={styles.btnContainer}>
                             <input type="submit" value={t("form.inputs.submit")} className={`${styles.form__input} ${styles.form__input_submit} ${state.checkSubmit ? styles.active : ''}`} />
                         </div>
-                        <Link href='/register' className={`${styles.form__helps } ${styles.form__helps_link}`}>{t("form.inputs.dontHaveAccount")}</Link>          
+                        <Link href='/auth/register' className={`${styles.form__helps } ${styles.form__helps_link}`}>{t("form.inputs.dontHaveAccount")}</Link>          
                     </>
                 ) : (
                         <>
@@ -110,7 +110,7 @@ const AuthForm = ({ type }) => {
                                 
                             <div className={styles.btnContainer}>
                                 <input type="submit" value={t("form.inputs.submit")} className={`${styles.form__input} ${styles.form__input_submit} ${state.checkSubmit ? styles.active : ''} `} />
-                                <Link href='/login' className={styles.form__helps}>{t("form.inputs.haveAccount")}</Link>          
+                                <Link href='auth/login' className={styles.form__helps}>{t("form.inputs.haveAccount")}</Link>          
                             </div>
                         </>
                 )}
