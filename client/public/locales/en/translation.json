@@ -1,28 +1,24 @@
 {
-    "header" : {
-        "toggleLang": "Toggle lang",
-        "signIn": "Sign in",
-<<<<<<< HEAD
-        "signUp": "Sign up"
-=======
-        "signUp": "Sign up",
-        "logOut": "Log out"
->>>>>>> 646f988 (client)
-    },
-    "form": {
-        "login": "Login",
-        "register": "Registration",
-        "inputs": {
-            "name": "Enter full name",
-            "email": "Enter email",
-            "pass": "Enter password",
-            "forgotPass": "Forgot password?",
-            "confPass": "Confirm password",
-            "passHelper": "Password at least 5 characters",
-            "confPassHelper": "Passwords do not match",
-            "submit": "Submit",
-            "haveAccount": "Already have an account?",
-            "dontHaveAccount": "No account yet?"
-        }
-    }
+	"header": {
+		"toggleLang": "Toggle lang",
+		"signIn": "Sign in",
+		"signUp": "Sign up",
+		"logOut": "Log out"
+	},
+	"form": {
+		"login": "Login",
+		"register": "Registration",
+		"inputs": {
+			"name": "Enter full name",
+			"email": "Enter email",
+			"pass": "Enter password",
+			"forgotPass": "Forgot password?",
+			"confPass": "Confirm password",
+			"passHelper": "Password at least 5 characters",
+			"confPassHelper": "Passwords do not match",
+			"submit": "Submit",
+			"haveAccount": "Already have an account?",
+			"dontHaveAccount": "No account yet?"
+		}
+	}
 }
