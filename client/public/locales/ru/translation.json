@@ -1,24 +1,24 @@
 {
-	"header": {
-		"toggleLang": "Сменить язык",
-		"signIn": "Войти",
-		"signUp": "Создать аккаунт",
-		"logOut": "Выйти из аккаунта"
-	},
-	"form": {
-		"login": "Вход",
-		"register": "Регистрация",
-		"inputs": {
-			"name": "Введите полное имя",
-			"email": "Введите email",
-			"pass": "Введите пароль",
-			"forgotPass": "Забыли пароль?",
-			"confPass": "Подтвердите пароль",
-			"passHelper": "пароль не менее 5 символов",
-			"confPassHelper": "Пароли не совпадают",
-			"submit": "Отправить",
-			"haveAccount": "Уже есть аккаунт?",
-			"dontHaveAccount": "Ещё нет аккаунта?"
-		}
-	}
+    "header" : {
+        "toggleLang": "Сменить язык",
+        "signIn": "Войти",
+        "signUp": "Создать аккаунт",
+        "logOut": "Выйти из аккаунта"
+    },
+    "form": {
+        "login": "Вход",
+        "register": "Регистрация",
+        "inputs": {
+            "name": "Введите полное имя",
+            "email": "Введите email",
+            "pass": "Введите пароль",
+            "forgotPass": "Забыли пароль?",
+            "confPass": "Подтвердите пароль",
+            "passHelper": "пароль не менее 5 символов",
+            "confPassHelper": "Пароли не совпадают",
+            "submit": "Отправить",
+            "haveAccount": "Уже есть аккаунт?",
+            "dontHaveAccount": "Ещё нет аккаунта?"
+        }
+    }
 }
