@@ -1,6 +1,8 @@
 import React from 'react'
 import styles from './Header.module.scss'
 const Header = () => {
+	const isAuth = true
+
 	return (
 		<header>
 			<div className={styles.header}>
@@ -9,10 +11,16 @@ const Header = () => {
 						<a className={styles.logo} href="">
 							RoxShox & S1ma
 						</a>
-						<div className={styles.btnWrap}>
-							<button className={styles.btnEnter}>Войти</button>
-							<button className={styles.btnCreate}>Создать аккаунт</button>
-						</div>
+						{isAuth ? (
+							<div className={styles.btnWrap}>
+								<button className={styles.btnOut}>Выйти</button>
+							</div>
+						) : (
+							<div className={styles.btnWrap}>
+								<button className={styles.btnEnter}>Войти</button>
+								<button className={styles.btnCreate}>Создать аккаунт</button>
+							</div>
+						)}
 					</div>
 				</div>
 			</div>
