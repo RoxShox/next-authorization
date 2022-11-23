@@ -1,3 +1,10 @@
+:root {
+	--accent-dark: ;
+	--bg-dark: #060606;
+	--accent-light: #4361ee;
+	--bg-light: #f6f7fa;
+}
+
 html,
 body {
 	padding: 0;
@@ -21,6 +28,15 @@ a {
 	padding: 0 10px;
 	margin: 0 auto;
 }
-:root{
-	--color-black: #000
+:root {
+	--color-black: #000;
+}
+.wrapperTheme {
+	background-color: var(--bg-light);
+	position: relative;
+	height: 100vh;
+}
+
+.wrapperTheme.dark {
+	background-color: var(--bg-dark);
 }
