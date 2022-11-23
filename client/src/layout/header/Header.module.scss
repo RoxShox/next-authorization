@@ -25,13 +25,10 @@
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	position: relative;
-	box-sizing: border-box;
 	background-color: transparent;
 	outline: 0;
 	border: 0;
 	cursor: pointer;
-	text-decoration: none;
 	color: inherit;
 	text-transform: none;
 	font-weight: 400;
@@ -49,8 +46,6 @@
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	position: relative;
-	box-sizing: border-box;
 	background-color: transparent;
 	outline: 0;
 	border: 0;
@@ -72,4 +67,17 @@
 .btnWrap {
 	column-gap: 10px;
 	display: flex;
+}
+
+.btnOut {
+	background: rgb(211, 19, 19);
+	color: white;
+	font-size: 0.875rem;
+	padding: 5px 15px;
+	outline: none;
+	border: none;
+	min-width: 64px;
+	border-radius: 4px;
+	line-height: 1.75;
+	cursor: pointer;
 }
