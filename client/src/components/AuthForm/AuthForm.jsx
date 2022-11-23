@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next'
 import Link from 'next/link';
+import { useDispatch } from 'react-redux'
+import {fetchAuth, fetchRegister} from '../../redux' 
 import styles from './AuthForm.module.scss'
+import axios from 'axios';
 
 const AuthForm = ({ type }) => {
     const initState = { name: '', email: '', pass: '', confPass: '', checkConfPass: true, checkSubmit: false}
     const [state, setState] = useState(initState)
     const checkSubmitDepends = type === 'login' ? [state.pass, state.email] : [state.checkConfPass, state.email, state.name]
+    const dispatch = useDispatch()
     const { t, i18n } = useTranslation()
 
     useEffect(() => {
@@ -50,9 +54,28 @@ const AuthForm = ({ type }) => {
         return setState(newState)        
     }
     
-    function formSubmit(e) {
+    async function formSubmit(e) {
         e.preventDefault()
         if (!state.checkSubmit && type !== 'login') return
+        if (type === 'login') {
+            const req = {
+                password: state.pass,
+                email: state.email
+            }
+            const res = await dispatch(fetchAuth(req))
+            console.log(res)
+            return
+        }
+        if (type === 'register') {
+            const req = {
+                password: state.pass,
+                email: state.email,
+                fullName: state.name
+            }
+            const res = await dispatch(fetchRegister(req))
+            console.log(res)
+            return
+        }
     }
     
     return (
