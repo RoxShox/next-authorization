@@ -2,12 +2,8 @@
     "header" : {
         "toggleLang": "Ändern Sie die Sprache",
         "signIn": "Einloggen",
-<<<<<<< HEAD
-        "signUp": "Konto erstellen"
-=======
         "signUp": "Account erstellen",
         "logOut": "Sich vom account abmelden"
->>>>>>> 646f988 (client)
     },
     "form": {
         "login": "Einloggen",

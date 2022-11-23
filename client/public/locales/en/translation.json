@@ -2,12 +2,8 @@
     "header" : {
         "toggleLang": "Toggle lang",
         "signIn": "Sign in",
-<<<<<<< HEAD
-        "signUp": "Sign up"
-=======
         "signUp": "Sign up",
         "logOut": "Log out"
->>>>>>> 646f988 (client)
     },
     "form": {
         "login": "Login",

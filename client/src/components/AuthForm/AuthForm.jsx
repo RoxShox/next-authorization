@@ -42,10 +42,7 @@ const AuthForm = ({ type }) => {
         newState.checkSubmit = true
         setState(newState)
     }
-<<<<<<< HEAD
 
-=======
->>>>>>> 646f988 (client)
     function handleChange(e) {
         const newState = { ...state }
         const target = e.target
