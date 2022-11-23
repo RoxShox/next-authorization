@@ -1,0 +1,23 @@
+{
+    "header" : {
+        "toggleLang": "Ändern Sie die Sprache",
+        "signIn": "Einloggen",
+        "signUp": "Konto erstellen"
+    },
+    "form": {
+        "login": "Einloggen",
+        "register": "Anmeldung",
+        "inputs": {
+            "name": "Vollständigen Namen eingeben",
+            "email": "Email eingeben",
+            "pass": "Passwort eingeben",
+            "forgotPass": "Haben Sie Ihr Passwort vergessen?",
+            "confPass": "Bestätigen Sie das Passwort",
+            "passHelper": "ein Passwort mit mindestens 5 Zeichen",
+            "confPassHelper": "Passwörter stimmen nicht überein",
+            "submit": "Einreichen",
+            "haveAccount": "Sie haben bereits ein Account?",
+            "dontHaveAccount": "Noch kein Account?"
+        }
+    }
+}
