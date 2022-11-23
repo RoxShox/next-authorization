@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next'
-import i18n from '../../helpers/i18next'
 import Link from 'next/link';
 import styles from './AuthForm.module.scss'
 
@@ -54,7 +53,6 @@ const AuthForm = ({ type }) => {
     function formSubmit(e) {
         e.preventDefault()
         if (!state.checkSubmit && type !== 'login') return
-        i18n.changeLanguage('en')
     }
     
     return (
