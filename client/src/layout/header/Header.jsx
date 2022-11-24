@@ -1,15 +1,25 @@
+import Link from 'next/link'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { LangMenu } from '../../components'
 import { selectIsAuth } from '../../redux/slices/auth'
+import { logout } from '../../redux/slices/auth'
+import { useDispatch } from 'react-redux'
 import styles from './Header.module.scss'
 const Header = () => {
 	const isAuth = useSelector(selectIsAuth)
+	const dispatch = useDispatch()
 	console.log(isAuth)
 
 	const { t, i18n } = useTranslation()
 
+	const onClickLogout = () => {
+		if (window.confirm('Вы действительно хотите выйти?')) {
+			dispatch(logout())
+			window.localStorage.removeItem('token')
+		}
+	}
 	return (
 		<header>
 			<div className={styles.header}>
@@ -19,11 +29,17 @@ const Header = () => {
 							RoxShox & S1ma
 						</a>
 						{isAuth ? (
-							<div className={styles.btnOut}>{t('header.logOut')}</div>
+							<div onClick={onClickLogout} className={styles.btnOut}>
+								{t('header.logOut')}
+							</div>
 						) : (
 							<div className={styles.btnWrap}>
-								<button className={styles.btnEnter}>{t('header.signIn')}</button>
-								<button className={styles.btnCreate}>{t('header.signUp')}</button>
+								<Link href="/login" className={styles.btnEnter}>
+									{t('header.signIn')}
+								</Link>
+								<Link href="/register" className={styles.btnCreate}>
+									{t('header.signUp')}
+								</Link>
 								<LangMenu />
 							</div>
 						)}
