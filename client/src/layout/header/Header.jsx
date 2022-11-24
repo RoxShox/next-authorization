@@ -7,6 +7,7 @@ import { selectIsAuth } from '../../redux/slices/auth'
 import { logout } from '../../redux/slices/auth'
 import { useDispatch } from 'react-redux'
 import styles from './Header.module.scss'
+import useTheme from '../../hooks/useTheme'
 const Header = () => {
 	const isAuth = useSelector(selectIsAuth)
 	const dispatch = useDispatch()
@@ -20,6 +21,7 @@ const Header = () => {
 			window.localStorage.removeItem('token')
 		}
 	}
+	const { isDark, setIsDark } = useTheme()
 	return (
 		<header>
 			<div className={styles.header}>
@@ -41,6 +43,7 @@ const Header = () => {
 									{t('header.signUp')}
 								</Link>
 								<LangMenu />
+								<button onClick={() => setIsDark(!isDark)}>Change Theme</button>
 							</div>
 						)}
 					</div>

@@ -21,6 +21,11 @@
 	text-decoration: none;
 }
 
+.wrapperTheme.dark .logo {
+	color: var(--accent-dark);
+	background-color: #fff;
+}
+
 .btnEnter {
 	display: inline-flex;
 	align-items: center;
