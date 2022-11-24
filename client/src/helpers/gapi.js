@@ -1,5 +1,6 @@
 import jwt_decode from 'jwt-decode'
 export default function gapi(google, btnRef) {
+
     function googleCallback(res) {
         const user = jwt_decode(res.credential)
         console.log(user)
@@ -9,8 +10,8 @@ export default function gapi(google, btnRef) {
         callback: googleCallback  
     })
     google.accounts.id.renderButton(
-        btnRef.current,
-        {theme: "outline", size: "large"}
+        btnRef,
+        {size: "large"}
     )
     console.log(`Google init`)
 } 

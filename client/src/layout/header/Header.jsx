@@ -34,10 +34,10 @@ const Header = () => {
 							</div>
 						) : (
 							<div className={styles.btnWrap}>
-								<Link href="/login" className={styles.btnEnter}>
+								<Link href="/auth/login" className={styles.btnEnter}>
 									{t('header.signIn')}
 								</Link>
-								<Link href="/register" className={styles.btnCreate}>
+								<Link href="/auth/register" className={styles.btnCreate}>
 									{t('header.signUp')}
 								</Link>
 								<LangMenu />

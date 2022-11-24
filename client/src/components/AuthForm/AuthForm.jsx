@@ -1,12 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import Link from 'next/link'
 import { useDispatch, useSelector } from 'react-redux'
+import Link from 'next/link'
+import Script from 'next/script'
 import { fetchAuth, fetchRegister } from '../../redux'
+import gapi from '../../helpers/gapi'
 import styles from './AuthForm.module.scss'
 import axios from 'axios'
 import { selectIsAuth } from '../../redux/slices/auth'
 import { useRouter } from 'next/router'
+
+
 const AuthForm = ({ type }) => {
 	const initState = {
 		name: '',
@@ -17,13 +21,15 @@ const AuthForm = ({ type }) => {
 		checkSubmit: false,
 	}
 	const [state, setState] = useState(initState)
+	const { t, i18n } = useTranslation()
 	const checkSubmitDepends =
 		type === 'login' ? [state.pass, state.email] : [state.checkConfPass, state.email, state.name]
 	const dispatch = useDispatch()
-	const { t, i18n } = useTranslation()
+	
 	const isAuth = useSelector(selectIsAuth)
-
 	const router = useRouter()
+
+	const googleBtn = useRef()
 
 	useEffect(() => {
 		if (type === 'login') return
@@ -103,6 +109,7 @@ const AuthForm = ({ type }) => {
 	}
 	return (
 		<div className={styles.formContainer}>
+			<Script src="https://accounts.google.com/gsi/client" onLoad={() => gapi(google, googleBtn.current)}/>
 			<form id="auth" className={styles.form} onSubmit={formSubmit}>
 				{type === 'login' ? (
 					<>
@@ -206,6 +213,7 @@ const AuthForm = ({ type }) => {
 						</div>
 					</>
 				)}
+				<div id="googleBtn" ref={googleBtn}></div>
 			</form>
 		</div>
 	)
