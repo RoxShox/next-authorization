@@ -1,1 +1,1 @@
-export { fetchAuth, fetchRegister } from "./slices/auth";
+export { fetchAuth, fetchRegister } from './slices/auth'

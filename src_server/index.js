@@ -7,7 +7,7 @@ import * as UserController from './controllers/UserController.js'
 
 mongoose
 	.connect(
-		'mongodb+srv://admin:@cluster0.m8s97xd.mongodb.net/blog?retryWrites=true&w=majority',
+		'mongodb+srv://admin:12345@cluster0.m8s97xd.mongodb.net/blog?retryWrites=true&w=majority',
 	)
 	.then(() => {
 		console.log('DB ok')
