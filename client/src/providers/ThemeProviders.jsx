@@ -1,16 +1,16 @@
 import { createContext, useMemo, useState } from 'react'
 
 export const ThemeContext = createContext({
-	type: 'Light',
+	isDark: false,
 })
 export const ThemeProvider = ({ children }) => {
-	const [type, setType] = useState('Light')
+	const [isDark, setIsDark] = useState(false)
 	const value = useMemo(
 		() => ({
-			type,
-			setType,
+			isDark,
+			setIsDark,
 		}),
-		[type],
+		[isDark],
 	)
 	return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
 }
