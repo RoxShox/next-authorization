@@ -1,16 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next'
 import Link from 'next/link';
 import { useDispatch } from 'react-redux'
+import Script from 'next/script'
 import {fetchAuth, fetchRegister} from '../../redux' 
 import styles from './AuthForm.module.scss'
-import axios from 'axios';
+import { useGoogle } from '../../hooks';
+import gapi from '../../helpers/gapi';
 
 const AuthForm = ({ type }) => {
     const initState = { name: '', email: '', pass: '', confPass: '', checkConfPass: true, checkSubmit: false}
     const [state, setState] = useState(initState)
-    const checkSubmitDepends = type === 'login' ? [state.pass, state.email] : [state.checkConfPass, state.email, state.name]
     const dispatch = useDispatch()
+    
+    const checkSubmitDepends = type === 'login' ? [state.pass, state.email] : [state.checkConfPass, state.email, state.name]
+
+    const googleBtn = useRef(null)
+
     const { t, i18n } = useTranslation()
 
     useEffect(() => {
@@ -54,7 +60,7 @@ const AuthForm = ({ type }) => {
         return setState(newState)        
     }
     
-    async function formSubmit(e) {
+    function formSubmit(e) {
         e.preventDefault()
         if (!state.checkSubmit && type !== 'login') return
         if (type === 'login') {
@@ -62,7 +68,7 @@ const AuthForm = ({ type }) => {
                 password: state.pass,
                 email: state.email
             }
-            const res = await dispatch(fetchAuth(req))
+            const res = dispatch(fetchAuth(req))
             console.log(res)
             return
         }
@@ -72,7 +78,8 @@ const AuthForm = ({ type }) => {
                 email: state.email,
                 fullName: state.name
             }
-            const res = await dispatch(fetchRegister(req))
+            console.log(JSON.stringify(req))
+            const res = dispatch(fetchRegister(req))
             console.log(res)
             return
         }
@@ -80,6 +87,7 @@ const AuthForm = ({ type }) => {
     
     return (
         <div className={styles.formContainer}>
+            <Script src='https://accounts.google.com/gsi/client' onLoad={() => gapi(google, googleBtn)}/>
             <form id="auth" className={styles.form} onSubmit={formSubmit}>
                 {type === 'login' ? (
                     <>
@@ -114,6 +122,7 @@ const AuthForm = ({ type }) => {
                             </div>
                         </>
                 )}
+                <div id="googleBtn" ref={googleBtn}></div>
             </form>
         </div>
     )
