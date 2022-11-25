@@ -220,12 +220,6 @@ const AuthForm = ({ type }) => {
 							{passwordDirty && passwordError && (
 								<div style={{ color: 'red' }}>{passwordError}</div>
 							)}
-							<span
-								className={`${styles.form__helps} ${styles.form__helps_pass} ${
-									state.pass ? '' : styles.active
-								}`}>
-								{t('form.inputs.passHelper')}
-							</span>
 						</div>
 						<div className={`${styles.passContainer} ${!state.checkConfPass ? styles.danger : ''}`}>
 							<input
