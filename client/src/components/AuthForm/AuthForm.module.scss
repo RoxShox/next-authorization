@@ -1,97 +1,95 @@
-.formContainer{
-    display: block;
-    width: 100%;
-    max-width: 600px;
+.formContainer {
+	display: block;
+	width: 100%;
+	max-width: 600px;
 
-    .form{
-        display: flex;
-        padding: 25px;
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-        &__title{
-            margin: 0;
-        }
-        .btnContainer, .passContainer{
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            width: 80%;
+	.form {
+		display: flex;
+		padding: 25px;
+		flex-direction: column;
+		align-items: center;
+		gap: 20px;
+		&__title {
+			margin: 0;
+		}
+		.btnContainer,
+		.passContainer {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			width: 80%;
 
-            .form__helps_pass{
-                display: none;
-                text-decoration: none;
-                color: #00000090; 
-                &.active{
-                    display: block;
-                }
-            }
-            .form__input{
-                width: 100%;
-            }
-            &.danger{
-                .form__helps_confPass{
-                    text-decoration: none;
-                    cursor: default;
-                    color: red;
-                    display: block;
-                }
-                .form__input{
-                    border-color: transparent;
-                    outline: 4px solid red;
+			.form__helps_pass {
+				display: none;
+				text-decoration: none;
+				color: #00000090;
+				&.active {
+					display: block;
+				}
+			}
+			.form__input {
+				width: 100%;
+			}
+			&.danger {
+				.form__helps_confPass {
+					text-decoration: none;
+					cursor: default;
+					color: red;
+					display: block;
+				}
+				.form__input {
+					border-color: transparent;
+					outline: 4px solid red;
+				}
+			}
+		}
+		&__input {
+			border: 1px solid var(--accent-light);
+			border-radius: 16px;
+			padding: 5px 10px;
+			box-sizing: content-box;
+			height: 36px;
+			width: 80%;
+			font-size: 22px;
+			transition: 0.1s;
+			&:focus {
+				outline: 3px solid var(--accent-light);
+				transition: 0.1s;
+			}
 
-                }
-            }
+			&_submit {
+				background: #fff;
+				color: var(--accent-light);
+				font-weight: 600;
 
-        }
-        &__input{
-            border: 1px solid #4361ee;
-            border-radius: 16px;
-            padding: 5px 10px;
-            box-sizing: content-box;
-            height: 36px;
-            width: 80%;
-            font-size: 22px;
-            transition: .1s;
-            &:focus{
-                outline: 3px solid #4361ee;
-                transition: .1s;
-            }
-
-            &_submit{
-                background: #fff;
-                color: #4361ee;
-                font-weight: 600;
-
-                &.active{
-                    color: #fff;
-                    background: #4361ee;
-                    cursor: pointer;
-                }
-                &:active{
-                    transform: scale(.98);
-                }
-                
-            }
-        }   
-        &__helps{
-            color: #4361ee;
-            font-size: 1.2em;
-            cursor: pointer;
-            align-self: flex-end;
-            // margin-right: 20%;
-            &:hover{
-                text-decoration: underline ;
-            }
-            &_link {
-                font-size: 1.4em;
-                align-self: center;
-                margin-right: none;
-            }
-            &_confPass{
-                display: none;
-            }
-        }
-    }
+				&.active {
+					color: #fff;
+					background: var(--accent-light);
+					cursor: pointer;
+				}
+				&:active {
+					transform: scale(0.98);
+				}
+			}
+		}
+		&__helps {
+			color: var(--accent-light);
+			font-size: 1.2em;
+			cursor: pointer;
+			align-self: flex-end;
+			// margin-right: 20%;
+			&:hover {
+				text-decoration: underline;
+			}
+			&_link {
+				font-size: 1.4em;
+				align-self: center;
+				margin-right: none;
+			}
+			&_confPass {
+				display: none;
+			}
+		}
+	}
 }
