@@ -17,6 +17,12 @@ const AuthForm = ({ type }) => {
 		checkSubmit: false,
 	}
 	const [state, setState] = useState(initState)
+	const [emailDirty, setEmailDirty] = useState(false)
+	const [nameDirty, setNameDirty] = useState(false)
+	const [passwordDirty, setPasswordDirty] = useState(false)
+	const [emailError, setEmailError] = useState('Eмейл не может быть пустым')
+	const [passwordError, setPasswordError] = useState('Пароль не может быть пустым')
+	const [nameError, setNameError] = useState('Имя не может быть пустым')
 	const checkSubmitDepends =
 		type === 'login' ? [state.pass, state.email] : [state.checkConfPass, state.email, state.name]
 	const dispatch = useDispatch()
@@ -61,10 +67,40 @@ const AuthForm = ({ type }) => {
 	function handleChange(e) {
 		const newState = { ...state }
 		const target = e.target
+		const re =
+			/^[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/
 		newState[target.name] = target.value
+		if (!re.test(String(newState['email']).toLowerCase())) {
+			setEmailError('Некорректно введённый эмайл')
+		} else {
+			setEmailError('')
+		}
+		if (newState['pass'].length < 5) {
+			setPasswordError('Пароль должен быть больше 5 симоволов')
+		} else {
+			setPasswordError('')
+		}
+		if (newState['name'].length < 2) {
+			setNameError('Имя должно быть больше 2-х символов')
+		} else {
+			setNameError('')
+		}
 		return setState(newState)
 	}
-
+	function blurHandler(e) {
+		switch (e.target.name) {
+			case 'email':
+				setEmailDirty(true)
+				break
+			case 'pass':
+				setPasswordDirty(true)
+				break
+			case 'name':
+				setNameDirty(true)
+				break
+		}
+	}
+	console.log(emailError)
 	async function formSubmit(e) {
 		e.preventDefault()
 		if (!state.checkSubmit && type !== 'login') return
@@ -108,6 +144,7 @@ const AuthForm = ({ type }) => {
 					<>
 						<h1 className={styles.form__title}>{t('form.login')}</h1>
 						<input
+							onBlur={blurHandler}
 							required
 							type="email"
 							placeholder={t('form.inputs.email')}
@@ -115,8 +152,10 @@ const AuthForm = ({ type }) => {
 							className={styles.form__input}
 							onChange={handleChange}
 						/>
+						{emailDirty && emailError && <div style={{ color: 'red' }}>{emailError}</div>}
 						<div className={styles.passContainer}>
 							<input
+								onBlur={blurHandler}
 								required
 								type="password"
 								placeholder={t('form.inputs.pass')}
@@ -124,6 +163,9 @@ const AuthForm = ({ type }) => {
 								className={styles.form__input}
 								onChange={handleChange}
 							/>
+							{passwordDirty && passwordError && (
+								<div style={{ color: 'red' }}>{passwordError}</div>
+							)}
 							<span className={styles.form__helps} onClick={() => alert('Aхахах, сожалеем :(')}>
 								{t('form.inputs.forgotPass')}
 							</span>
@@ -145,6 +187,7 @@ const AuthForm = ({ type }) => {
 					<>
 						<h1 className={styles.form__title}>{t('form.register')}</h1>
 						<input
+							onBlur={blurHandler}
 							required
 							type="text"
 							placeholder={t('form.inputs.name')}
@@ -152,7 +195,9 @@ const AuthForm = ({ type }) => {
 							className={styles.form__input}
 							onChange={handleChange}
 						/>
+						{nameDirty && nameError && <div style={{ color: 'red' }}>{nameError}</div>}
 						<input
+							onBlur={blurHandler}
 							required
 							type="email"
 							placeholder={t('form.inputs.email')}
@@ -160,8 +205,10 @@ const AuthForm = ({ type }) => {
 							className={styles.form__input}
 							onChange={handleChange}
 						/>
+						{emailDirty && emailError && <div style={{ color: 'red' }}>{emailError}</div>}
 						<div className={styles.passContainer}>
 							<input
+								onBlur={blurHandler}
 								minLength="5"
 								required
 								type="password"
@@ -170,6 +217,9 @@ const AuthForm = ({ type }) => {
 								className={styles.form__input}
 								onChange={handleChange}
 							/>
+							{passwordDirty && passwordError && (
+								<div style={{ color: 'red' }}>{passwordError}</div>
+							)}
 							<span
 								className={`${styles.form__helps} ${styles.form__helps_pass} ${
 									state.pass ? '' : styles.active

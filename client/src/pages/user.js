@@ -10,7 +10,7 @@ const User = () => {
 	}
 
 	return (
-		<div style={{ textAlign: 'center' }}>
+		<div className="user__text">
 			<h1>Имя пользователя:{data.fullName}</h1>
 		</div>
 	)
