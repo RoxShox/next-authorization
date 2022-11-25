@@ -1,8 +1,13 @@
 :root {
-	--accent-dark: ;
-	--bg-dark: #060606;
+	--accent-dark: #3ca654;
 	--accent-light: #4361ee;
+	--black-logo: #fff;
+	--blackBg-logo: #000;
 	--bg-light: #f6f7fa;
+	--bg-dark: rgb(10, 8, 8);
+	--header-border: #e0e0e0;
+	--select-lang: #00000015;
+	--footer-text: #000;
 }
 
 html,
@@ -33,7 +38,17 @@ a {
 	position: relative;
 	height: 100vh;
 }
+.user__text {
+	text-align: center;
+	color: var(--footer-text);
+}
 
 .wrapperTheme.dark {
 	background-color: var(--bg-dark);
+	--black-logo: #3ca654;
+	--blackBg-logo: #384058;
+	--header-border: #3ca654;
+	--accent-light: #3ca654;
+	--select-lang: #cbffa0;
+	--footer-text: #3ca654;
 }

@@ -7,30 +7,36 @@ import { selectIsAuth } from '../../redux/slices/auth'
 import { logout } from '../../redux/slices/auth'
 import { useDispatch } from 'react-redux'
 import styles from './Header.module.scss'
+import useTheme from '../../hooks/useTheme'
+import { useRouter } from 'next/router'
+import { BsSunFill, BsFillMoonStarsFill } from 'react-icons/bs'
 const Header = () => {
 	const isAuth = useSelector(selectIsAuth)
 	const dispatch = useDispatch()
-	console.log(isAuth)
-
+	const router = useRouter()
 	const { t, i18n } = useTranslation()
-
 	const onClickLogout = () => {
 		if (window.confirm('Вы действительно хотите выйти?')) {
 			dispatch(logout())
 			window.localStorage.removeItem('token')
+			router.push('/')
 		}
 	}
+	const { isDark, setIsDark } = useTheme()
 	return (
 		<header>
 			<div className={styles.header}>
 				<div className="container">
 					<div className={styles.wrapper}>
-						<a className={styles.logo} href="">
+						<a data="logo" className={styles.logo} href="">
 							RoxShox & S1ma
 						</a>
 						{isAuth ? (
-							<div onClick={onClickLogout} className={styles.btnOut}>
-								{t('header.logOut')}
+							<div>
+								<div onClick={onClickLogout} className={styles.btnOut}>
+									{t('header.logOut')}
+								</div>
+								<LangMenu />
 							</div>
 						) : (
 							<div className={styles.btnWrap}>
@@ -41,6 +47,15 @@ const Header = () => {
 									{t('header.signUp')}
 								</Link>
 								<LangMenu />
+								<button
+									style={{ border: 'none', background: 'none', cursor: 'pointer' }}
+									onClick={() => setIsDark(!isDark)}>
+									{isDark ? (
+										<BsSunFill color={'rgb(185 255 73)'} size={30} />
+									) : (
+										<BsFillMoonStarsFill color={'#4b5d9f'} size={30} />
+									)}
+								</button>
 							</div>
 						)}
 					</div>
