@@ -23,7 +23,7 @@ i18n
         lng: 'ru',
         supportedLngs: ['ru', 'en', 'de'],
         fallbackLng: 'ru',
-        debug: true,
+        debug: false,
         detection: {  
             order: ["cookie", "localStorage"],
             caches: ["cookie", "localStorage"]
