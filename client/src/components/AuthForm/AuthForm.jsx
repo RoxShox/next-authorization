@@ -144,7 +144,7 @@ const AuthForm = ({ type }) => {
 								}`}
 							/>
 						</div>
-						<Link href="/register" className={`${styles.form__helps} ${styles.form__helps_link}`}>
+						<Link href="/auth/register" className={`${styles.form__helps} ${styles.form__helps_link}`}>
 							{t('form.inputs.dontHaveAccount')}
 						</Link>
 					</>
@@ -184,7 +184,7 @@ const AuthForm = ({ type }) => {
 								{t('form.inputs.passHelper')}
 							</span>
 						</div>
-						<div className={`${styles.passContainer} ${!state.checkConfPass ? styles.danger : ''}`}>
+						<div className={`${styles.passContainer} ${!state.checkConfPass && state.confPass ? styles.danger : ''}`}>
 							<input
 								required
 								type="password"
@@ -207,7 +207,7 @@ const AuthForm = ({ type }) => {
 									state.checkSubmit ? styles.active : ''
 								} `}
 							/>
-							<Link href="/login" className={styles.form__helps}>
+							<Link href="/auth/login" className={styles.form__helps}>
 								{t('form.inputs.haveAccount')}
 							</Link>
 						</div>
