@@ -105,7 +105,7 @@ const AuthForm = ({ type }) => {
 				break
 		}
 	}
-	console.log(emailError)
+	// console.log(emailError)
 	async function formSubmit(e) {
 		e.preventDefault()
 		if (!state.checkSubmit && type !== 'login') return
@@ -176,15 +176,13 @@ const AuthForm = ({ type }) => {
 								{t('form.inputs.forgotPass')}
 							</span>
 						</div>
-						<div className={styles.btnContainer}>
-							<input
-								type="submit"
-								value={t('form.inputs.submit')}
-								className={`${styles.form__input} ${styles.form__input_submit} ${
-									state.checkSubmit ? styles.active : ''
-								}`}
-							/>
-						</div>
+						<input
+							type="submit"
+							value={t('form.inputs.submit')}
+							className={`${styles.form__input} ${styles.form__input_submit} ${
+								state.checkSubmit ? styles.active : ''
+							}`}
+						/>
 						<Link href="/auth/register" className={`${styles.form__helps} ${styles.form__helps_link}`}>
 							{t('form.inputs.dontHaveAccount')}
 						</Link>

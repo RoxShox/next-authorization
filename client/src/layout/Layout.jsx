@@ -19,7 +19,7 @@ const Layout = ({ children }) => {
 		<ThemeProvider>
 			<WrapperTheme>
 				<Header />
-				<div className="container">{children}</div>
+				<main className="main container">{children}</main>
 				<Footer />
 			</WrapperTheme>
 		</ThemeProvider>
