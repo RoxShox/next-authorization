@@ -28,7 +28,7 @@ const Header = () => {
 			<div className={styles.header}>
 				<div className="container">
 					<div className={styles.wrapper}>
-						<a data="logo" className={styles.logo} href="">
+						<a data="logo" className={styles.logo} href="/">
 							RoxShox & S1ma
 						</a>
 						{isAuth ? (

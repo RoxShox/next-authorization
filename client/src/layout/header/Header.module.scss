@@ -5,8 +5,11 @@
 .wrapper {
 	display: flex;
 	align-items: center;
+	gap: 20px;
 	height: 70px;
 	justify-content: space-between;
+	white-space: nowrap;
+
 }
 
 .logo {

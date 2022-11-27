@@ -20,17 +20,17 @@ const AuthForm = ({ type }) => {
 		checkConfPass: true,
 		checkSubmit: false,
 	}
+	const { t, i18n } = useTranslation()
 	const [state, setState] = useState(initState)
 	const [emailDirty, setEmailDirty] = useState(false)
 	const [nameDirty, setNameDirty] = useState(false)
 	const [passwordDirty, setPasswordDirty] = useState(false)
-	const [emailError, setEmailError] = useState('Eмейл не может быть пустым')
-	const [passwordError, setPasswordError] = useState('Пароль не может быть пустым')
-	const [nameError, setNameError] = useState('Имя не может быть пустым')
+	const [emailError, setEmailError] = useState(t('form.helpers.email'))
+	const [passwordError, setPasswordError] = useState(t('form.helpers.pass'))
+	const [nameError, setNameError] = useState(t('form.helpers.name'))
 	const checkSubmitDepends =
 		type === 'login' ? [state.pass, state.email] : [state.checkConfPass, state.email, state.name]
 	const dispatch = useDispatch()
-	const { t, i18n } = useTranslation()
 	const isAuth = useSelector(selectIsAuth)
 	const router = useRouter()
 
@@ -76,17 +76,17 @@ const AuthForm = ({ type }) => {
 			/^[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/
 		newState[target.name] = target.value
 		if (!re.test(String(newState['email']).toLowerCase())) {
-			setEmailError('Некорректно введённый эмайл')
+			setEmailError(t('form.errors.email'))
 		} else {
 			setEmailError('')
 		}
 		if (newState['pass'].length < 5) {
-			setPasswordError('Пароль должен быть больше 5 симоволов')
+			setPasswordError(t('form.errors.passLength'))
 		} else {
 			setPasswordError('')
 		}
 		if (newState['name'].length < 2) {
-			setNameError('Имя должно быть больше 2-х символов')
+			setNameError(t('form.errors.nameLength'))
 		} else {
 			setNameError('')
 		}
@@ -117,7 +117,7 @@ const AuthForm = ({ type }) => {
 			const res = await dispatch(fetchAuth(req))
 			console.log(res.payload)
 			if (!res.payload) {
-				return alert('Не удалось авторизоваться')
+				return alert(t('form.errors.auth'))
 			}
 			if ('token' in res.payload) {
 				window.localStorage.setItem('token', res.payload.token)
@@ -132,7 +132,7 @@ const AuthForm = ({ type }) => {
 			const res = await dispatch(fetchRegister(req))
 			console.log(res.payload)
 			if (!res.payload) {
-				return alert('Не удалось авторизоваться')
+				return alert(t('form.errors.auth'))
 			}
 			if ('token' in res.payload) {
 				window.localStorage.setItem('token', res.payload.token)
@@ -172,7 +172,7 @@ const AuthForm = ({ type }) => {
 							{passwordDirty && passwordError && (
 								<div style={{ color: 'red' }}>{passwordError}</div>
 							)}
-							<span className={styles.form__helps} onClick={() => alert('Aхахах, сожалеем :(')}>
+							<span className={styles.form__helps} onClick={() => alert(t('form.inputs.forgotPassAlert'))}>
 								{t('form.inputs.forgotPass')}
 							</span>
 						</div>
