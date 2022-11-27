@@ -19,6 +19,26 @@
             "submit": "Submit",
             "haveAccount": "Already have an account?",
             "dontHaveAccount": "No account yet?"
+        },
+        "helpers": {
+            "name": "Name cannot be empty",
+            "email": "Email cannot be empty",
+            "pass": "Password cannot be empty"
+            
+        },
+        "errors": {
+            "email": "Email entered incorrectly",
+            "passLength": "Password must be more than 5 characters",
+            "nameLength": "Name must be more than 2 characters",
+            "auth": "Failed to login"
         }
+    },
+    "mainPage": {
+        "defaultText": "This is the main page",
+        "jest": "This text should not be here"
+    },
+    "userPage": {
+        "text": "User name: ",
+        "loading": "Loading the user page..."
     }
 }

@@ -13,12 +13,33 @@
             "email": "Email eingeben",
             "pass": "Passwort eingeben",
             "forgotPass": "Haben Sie Ihr Passwort vergessen?",
+            "forgotPassAlert": "Hahahah, tut mir leid",
             "confPass": "Bestätigen Sie das Passwort",
             "passHelper": "ein Passwort mit mindestens 5 Zeichen",
             "confPassHelper": "Passwörter stimmen nicht überein",
             "submit": "Einreichen",
             "haveAccount": "Sie haben bereits ein Account?",
             "dontHaveAccount": "Noch kein Account?"
+        },
+        "helpers": {
+            "name": "Der Name darf nicht leer sein",
+            "email": "Email darf nicht leer sein",
+            "pass": "Passwort kann nicht leer sein"
+            
+        },
+        "errors": {
+            "email": "Email falsch eingegeben",
+            "passLength": "Das Passwort muss mehr als 5 Zeichen lang sein",
+            "nameLength": "Der Name muss mehr als 2 Zeichen lang sein",
+            "auth": "Login fehlgeschlagen"
         }
+    },
+    "mainPage": {
+        "defaultText": "Dies ist die Startseite",
+        "jest": "Der deutsche Bomber der neuesten Generation - Messerschmitt Me.262 \"Schwalbe\" "
+    },
+    "userPage": {
+        "text": "Name des Nutzers",
+        "loading": "Laden der Nutzerseite..."
     }
 }
