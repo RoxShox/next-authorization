@@ -32,12 +32,22 @@ const Header = () => {
 							RoxShox & S1ma
 						</a>
 						{isAuth ? (
-							<div>
+							<div className={styles.btnWrap}>
 								<div onClick={onClickLogout} className={styles.btnOut}>
 									{t('header.logOut')}
 								</div>
 								<LangMenu />
+								<button
+									style={{ border: 'none', background: 'none', cursor: 'pointer' }}
+									onClick={() => setIsDark(!isDark)}>
+									{isDark ? (
+										<BsSunFill color={'rgb(185 255 73)'} size={30} />
+									) : (
+										<BsFillMoonStarsFill color={'#4b5d9f'} size={30} />
+									)}
+								</button>
 							</div>
+							
 						) : (
 							<div className={styles.btnWrap}>
 								<Link href="/auth/login" className={styles.btnEnter}>
