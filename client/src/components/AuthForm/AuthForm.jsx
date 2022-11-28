@@ -10,7 +10,6 @@ import axios from 'axios'
 import { selectIsAuth } from '../../redux/slices/auth'
 import { useRouter } from 'next/router'
 
-
 const AuthForm = ({ type }) => {
 	const initState = {
 		name: '',
@@ -144,7 +143,10 @@ const AuthForm = ({ type }) => {
 	}
 	return (
 		<div className={styles.formContainer}>
-			<Script src="https://accounts.google.com/gsi/client" onLoad={() => gapi(google, googleBtn.current)}/>
+			<Script
+				src="https://accounts.google.com/gsi/client"
+				onLoad={() => gapi(google, googleBtn.current)}
+			/>
 			<form id="auth" className={styles.form} onSubmit={formSubmit}>
 				{type === 'login' ? (
 					<>
@@ -172,7 +174,9 @@ const AuthForm = ({ type }) => {
 							{passwordDirty && passwordError && (
 								<div style={{ color: 'red' }}>{passwordError}</div>
 							)}
-							<span className={styles.form__helps} onClick={() => alert(t('form.inputs.forgotPassAlert'))}>
+							<span
+								className={styles.form__helps}
+								onClick={() => alert(t('form.inputs.forgotPassAlert'))}>
 								{t('form.inputs.forgotPass')}
 							</span>
 						</div>
@@ -183,7 +187,9 @@ const AuthForm = ({ type }) => {
 								state.checkSubmit ? styles.active : ''
 							}`}
 						/>
-						<Link href="/auth/register" className={`${styles.form__helps} ${styles.form__helps_link}`}>
+						<Link
+							href="/auth/register"
+							className={`${styles.form__helps} ${styles.form__helps_link}`}>
 							{t('form.inputs.dontHaveAccount')}
 						</Link>
 					</>
@@ -225,7 +231,10 @@ const AuthForm = ({ type }) => {
 								<div style={{ color: 'red' }}>{passwordError}</div>
 							)}
 						</div>
-						<div className={`${styles.passContainer} ${!state.checkConfPass && state.confPass ? styles.danger : ''}`}>
+						<div
+							className={`${styles.passContainer} ${
+								!state.checkConfPass && state.confPass ? styles.danger : ''
+							}`}>
 							<input
 								required
 								type="password"

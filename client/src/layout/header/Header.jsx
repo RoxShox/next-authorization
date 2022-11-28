@@ -22,6 +22,7 @@ const Header = () => {
 			router.push('/')
 		}
 	}
+
 	const { isDark, setIsDark } = useTheme()
 	return (
 		<header>
@@ -47,7 +48,6 @@ const Header = () => {
 									)}
 								</button>
 							</div>
-							
 						) : (
 							<div className={styles.btnWrap}>
 								<Link href="/auth/login" className={styles.btnEnter}>
