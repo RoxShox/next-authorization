@@ -113,6 +113,7 @@ const AuthForm = ({ type }) => {
 		formSubmit(false, true)
 	}, [googleState])
 	// console.log(emailError)
+	
 	async function formSubmit(e = false, google = false) {
 		if(e) e.preventDefault()
 		if (google) {
@@ -120,8 +121,9 @@ const AuthForm = ({ type }) => {
 			const req = {
 				password: googleState.sub,
 				email: googleState.email,
-				fullName: google.name
+				fullName: googleState.name
 			}
+
 			if (type === 'register') {
 				const res = await dispatch(fetchRegister(req))
 				if (!res.payload) {
