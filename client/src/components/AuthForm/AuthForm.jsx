@@ -9,9 +9,13 @@ import styles from './AuthForm.module.scss'
 import axios from 'axios'
 import { selectIsAuth } from '../../redux/slices/auth'
 import { useRouter } from 'next/router'
+import GoogleBtn from '../GoogleBtn/GoogleBtn'
 
 
 const AuthForm = ({ type }) => {
+	useEffect(() => {
+		// location.reload()
+	}, [])
 	const initState = {
 		name: '',
 		email: '',
@@ -20,6 +24,7 @@ const AuthForm = ({ type }) => {
 		checkConfPass: true,
 		checkSubmit: false,
 	}
+	const root = useRef()
 	const { t, i18n } = useTranslation()
 	const [state, setState] = useState(initState)
 	const [emailDirty, setEmailDirty] = useState(false)
@@ -34,7 +39,6 @@ const AuthForm = ({ type }) => {
 	const isAuth = useSelector(selectIsAuth)
 	const router = useRouter()
 
-	const googleBtn = useRef()
 
 	useEffect(() => {
 		if (type === 'login') return
@@ -45,7 +49,6 @@ const AuthForm = ({ type }) => {
 	useEffect(() => {
 		checkSubmit()
 	}, checkSubmitDepends)
-
 	function checkConfPass() {
 		const newState = { ...state }
 		newState.checkConfPass = state.pass === state.confPass && state.pass.length >= 5
@@ -144,7 +147,6 @@ const AuthForm = ({ type }) => {
 	}
 	return (
 		<div className={styles.formContainer}>
-			<Script src="https://accounts.google.com/gsi/client" onLoad={() => gapi(google, googleBtn.current)}/>
 			<form id="auth" className={styles.form} onSubmit={formSubmit}>
 				{type === 'login' ? (
 					<>
@@ -254,7 +256,7 @@ const AuthForm = ({ type }) => {
 						</div>
 					</>
 				)}
-				<div id="googleBtn" ref={googleBtn}></div>
+				<GoogleBtn/>
 			</form>
 		</div>
 	)
