@@ -9,7 +9,7 @@ const register = () => {
 	return (
 		<div style={{ display: 'flex', justifyContent: 'center' }}>
 			<Head><title>{t('form.register')}</title></Head>
-			<AuthForm type='register'/>
+			<AuthForm type='register' />
 		</div>
 	)
 }
