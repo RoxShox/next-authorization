@@ -24,8 +24,8 @@ const AuthForm = ({ type }) => {
 		checkConfPass: true,
 		checkSubmit: false,
 	}
-	const root = useRef()
 	const { t, i18n } = useTranslation()
+	const [googleState, setGoogleState] = useState()
 	const [state, setState] = useState(initState)
 	const [emailDirty, setEmailDirty] = useState(false)
 	const [nameDirty, setNameDirty] = useState(false)
@@ -108,11 +108,43 @@ const AuthForm = ({ type }) => {
 				break
 		}
 	}
+	useEffect(() => {
+		if (!googleState) return 
+		formSubmit(false, true)
+	}, [googleState])
 	// console.log(emailError)
-	async function formSubmit(e) {
-		e.preventDefault()
+	async function formSubmit(e = false, google = false) {
+		if(e) e.preventDefault()
+		if (google) {
+			console.log('gooooogle')
+			const req = {
+				password: googleState.sub,
+				email: googleState.email,
+				fullName: google.name
+			}
+			if (type === 'register') {
+				const res = await dispatch(fetchRegister(req))
+				if (!res.payload) {
+					return alert(t('form.errors.auth'))
+				}
+				if ('token' in res.payload) {
+					window.localStorage.setItem('token', res.payload.token)
+				}
+
+			}
+			if (type === 'login') {
+				const res = await dispatch(fetchAuth(req))
+				console.log(res.payload)
+				if (!res.payload) {
+					return alert(t('form.errors.auth'))
+				}
+				if ('token' in res.payload) {
+					window.localStorage.setItem('token', res.payload.token)
+				}
+			}
+		}
 		if (!state.checkSubmit && type !== 'login') return
-		if (type === 'login') {
+		if (type === 'login' && e) {
 			const req = {
 				password: state.pass,
 				email: state.email,
@@ -126,7 +158,7 @@ const AuthForm = ({ type }) => {
 				window.localStorage.setItem('token', res.payload.token)
 			}
 		}
-		if (type === 'register') {
+		if (type === 'register' && e) {
 			const req = {
 				password: state.pass,
 				email: state.email,
@@ -256,7 +288,7 @@ const AuthForm = ({ type }) => {
 						</div>
 					</>
 				)}
-				<GoogleBtn/>
+				<GoogleBtn setState={setGoogleState} />
 			</form>
 		</div>
 	)
