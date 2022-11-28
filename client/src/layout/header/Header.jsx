@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { LangMenu } from '../../components'
@@ -23,6 +23,21 @@ const Header = () => {
 		}
 	}
 	const { isDark, setIsDark } = useTheme()
+	const setTheme = () => {
+		window.localStorage.setItem('isDark', JSON.stringify({init: true, theme: !isDark}))
+		setIsDark(!isDark)
+	}
+	useEffect(() => {
+		const storageIsDark = JSON.parse(window.localStorage.getItem('isDark'))
+		const checkTheme = () => {
+			if (storageIsDark) {
+				return setIsDark(storageIsDark.theme)
+			}
+			window.localStorage.setItem('isDark', JSON.stringify({init: true, theme: false}))
+			return setIsDark(false)
+		}
+		checkTheme()
+	}, [])
 	return (
 		<header>
 			<div className={styles.header}>
@@ -39,7 +54,7 @@ const Header = () => {
 								<LangMenu />
 								<button
 									style={{ border: 'none', background: 'none', cursor: 'pointer' }}
-									onClick={() => setIsDark(!isDark)}>
+									onClick={() => setTheme()}>
 									{isDark ? (
 										<BsSunFill color={'rgb(185 255 73)'} size={30} />
 									) : (
@@ -59,7 +74,7 @@ const Header = () => {
 								<LangMenu />
 								<button
 									style={{ border: 'none', background: 'none', cursor: 'pointer' }}
-									onClick={() => setIsDark(!isDark)}>
+									onClick={() => setTheme()}>
 									{isDark ? (
 										<BsSunFill color={'rgb(185 255 73)'} size={30} />
 									) : (

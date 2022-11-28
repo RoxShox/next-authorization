@@ -9,9 +9,13 @@ import styles from './AuthForm.module.scss'
 import axios from 'axios'
 import { selectIsAuth } from '../../redux/slices/auth'
 import { useRouter } from 'next/router'
+import GoogleBtn from '../GoogleBtn/GoogleBtn'
 
 
 const AuthForm = ({ type }) => {
+	useEffect(() => {
+		// location.reload()
+	}, [])
 	const initState = {
 		name: '',
 		email: '',
@@ -21,6 +25,7 @@ const AuthForm = ({ type }) => {
 		checkSubmit: false,
 	}
 	const { t, i18n } = useTranslation()
+	const [googleState, setGoogleState] = useState()
 	const [state, setState] = useState(initState)
 	const [emailDirty, setEmailDirty] = useState(false)
 	const [nameDirty, setNameDirty] = useState(false)
@@ -34,7 +39,6 @@ const AuthForm = ({ type }) => {
 	const isAuth = useSelector(selectIsAuth)
 	const router = useRouter()
 
-	const googleBtn = useRef()
 
 	useEffect(() => {
 		if (type === 'login') return
@@ -45,7 +49,6 @@ const AuthForm = ({ type }) => {
 	useEffect(() => {
 		checkSubmit()
 	}, checkSubmitDepends)
-
 	function checkConfPass() {
 		const newState = { ...state }
 		newState.checkConfPass = state.pass === state.confPass && state.pass.length >= 5
@@ -105,11 +108,45 @@ const AuthForm = ({ type }) => {
 				break
 		}
 	}
+	useEffect(() => {
+		if (!googleState) return 
+		formSubmit(false, true)
+	}, [googleState])
 	// console.log(emailError)
-	async function formSubmit(e) {
-		e.preventDefault()
+	
+	async function formSubmit(e = false, google = false) {
+		if(e) e.preventDefault()
+		if (google) {
+			console.log('gooooogle')
+			const req = {
+				password: googleState.sub,
+				email: googleState.email,
+				fullName: googleState.name
+			}
+
+			if (type === 'register') {
+				const res = await dispatch(fetchRegister(req))
+				if (!res.payload) {
+					return alert(t('form.errors.auth'))
+				}
+				if ('token' in res.payload) {
+					window.localStorage.setItem('token', res.payload.token)
+				}
+
+			}
+			if (type === 'login') {
+				const res = await dispatch(fetchAuth(req))
+				console.log(res.payload)
+				if (!res.payload) {
+					return alert(t('form.errors.auth'))
+				}
+				if ('token' in res.payload) {
+					window.localStorage.setItem('token', res.payload.token)
+				}
+			}
+		}
 		if (!state.checkSubmit && type !== 'login') return
-		if (type === 'login') {
+		if (type === 'login' && e) {
 			const req = {
 				password: state.pass,
 				email: state.email,
@@ -123,7 +160,7 @@ const AuthForm = ({ type }) => {
 				window.localStorage.setItem('token', res.payload.token)
 			}
 		}
-		if (type === 'register') {
+		if (type === 'register' && e) {
 			const req = {
 				password: state.pass,
 				email: state.email,
@@ -144,7 +181,6 @@ const AuthForm = ({ type }) => {
 	}
 	return (
 		<div className={styles.formContainer}>
-			<Script src="https://accounts.google.com/gsi/client" onLoad={() => gapi(google, googleBtn.current)}/>
 			<form id="auth" className={styles.form} onSubmit={formSubmit}>
 				{type === 'login' ? (
 					<>
@@ -254,7 +290,7 @@ const AuthForm = ({ type }) => {
 						</div>
 					</>
 				)}
-				<div id="googleBtn" ref={googleBtn}></div>
+				<GoogleBtn setState={setGoogleState} />
 			</form>
 		</div>
 	)
